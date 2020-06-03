@@ -8,7 +8,7 @@
 }*/
 
 struct BankAccount {
-    int balance;
+    int balance = 0;
 
     BankAccount() {
     }
@@ -18,13 +18,27 @@ struct BankAccount {
     }
 };
 
+// Inherit from Test
+struct BankAccountTest : testing::Test {
+
+    BankAccount* account;
+
+    // Test constructor
+    BankAccountTest() {
+        account = new BankAccount;
+    }
+
+    // Test destructor
+    ~BankAccountTest() {
+        delete account;
+    }
+};
+
 // Goup name, particular test name
-TEST(AccountTest, BankAccountStartEmpty) {
-    
-    BankAccount account;
+TEST_F(BankAccountTest, BankAccountStartsEmpty) {
 
     // Excpect to be equal
-    EXPECT_EQ(0, account.balance);
+    EXPECT_EQ(0, account->balance);
 }
 
 int main(int argc, char* argv[]) {
