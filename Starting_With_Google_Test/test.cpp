@@ -16,6 +16,11 @@ struct BankAccount {
     explicit BankAccount(const int balance)
         : balance{ balance } {
     }
+
+    void deposit(int amount) {
+    
+        balance += amount;
+    }
 };
 
 // Inherit from Test
@@ -39,6 +44,15 @@ TEST_F(BankAccountTest, BankAccountStartsEmpty) {
 
     // Excpect to be equal
     EXPECT_EQ(0, account->balance);
+}
+
+// Deposit test
+TEST_F(BankAccountTest, CanDepositMoney) {
+
+    account->deposit(100);
+
+    // Verify if the balance is 100
+    EXPECT_EQ(100, account->balance);
 }
 
 int main(int argc, char* argv[]) {
